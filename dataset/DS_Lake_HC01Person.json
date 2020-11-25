@@ -1,0 +1,25 @@
+{
+	"name": "DS_Lake_HC01Person",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HRDataLake_ADLSGen2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Handshake": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "@concat('HC01/HC01Person/Full/',dataset().HandShakeValue)",
+				"fileSystem": "publish"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
