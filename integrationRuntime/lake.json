@@ -1,0 +1,6 @@
+{
+	"name": "lake",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
