@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"Handshake": {
+			"HandShakeValue": {
 				"type": "string"
 			}
 		},
@@ -15,7 +15,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "@concat('HC01/HC01Person/Full/',dataset().HandShakeValue)",
+				"folderPath": {
+					"value": "@concat('HC01/HC01Person/Full/',dataset().HandShakeValue)",
+					"type": "Expression"
+				},
 				"fileSystem": "publish"
 			},
 			"compressionCodec": "snappy"
