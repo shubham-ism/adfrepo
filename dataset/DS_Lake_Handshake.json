@@ -15,6 +15,11 @@
 			},
 			"compressionCodec": "snappy"
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "LatestFolderName",
+				"type": "UTF8"
+			}
+		]
 	}
 }
