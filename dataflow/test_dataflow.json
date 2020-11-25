@@ -10,11 +10,22 @@
 						"type": "DatasetReference"
 					},
 					"name": "HC01Person"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_Lake_HC01PersonPosition",
+						"type": "DatasetReference"
+					},
+					"name": "HC01PersonPosition"
 				}
 			],
 			"sinks": [],
-			"transformations": [],
-			"script": "parameters{\n\tparameter1 as string\n}\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tformat: 'parquet') ~> HC01Person"
+			"transformations": [
+				{
+					"name": "HC01PersonPositionProjection"
+				}
+			],
+			"script": "source(output(\n\t\tAcquiredCompanyPersonID as string,\n\t\tAddressBookDifferentiatorName as string,\n\t\tAddressBookTitleDesc as string,\n\t\tAlternateEmail as string,\n\t\tBuildingID as integer,\n\t\tBusinessFullName as string,\n\t\tBusinessLastName as string,\n\t\tEmailName as string,\n\t\tFirstName as string,\n\t\tFullName as string,\n\t\tGDPRActionInd as string,\n\t\tLastName as string,\n\t\tLocalLanguageFirstName as string,\n\t\tLocalLanguageLastName as string,\n\t\tLocationAreaCode as string,\n\t\tLocationAreaDetail as string,\n\t\tLocationCity as string,\n\t\tMiddleName as string,\n\t\tMobileBldgAssociationID as integer,\n\t\tOrgProject as string,\n\t\tPersonnelAreaCode as string,\n\t\tPersonnelNumber as integer,\n\t\tPersonnelSubAreaCode as string,\n\t\tPersonStatusCode as string,\n\t\tPreferredFirstName as string,\n\t\tRoomNumber as string,\n\t\tSecondLastName as string,\n\t\tSuffixName as string,\n\t\tUSCitizenGCHolderInd as string,\n\t\tUseBusinessLastNameInd as string,\n\t\tWorkFaxNbr as string,\n\t\tWorkPhoneNbr as string,\n\t\tMSAspireInd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tformat: 'parquet') ~> HC01Person\nsource(output(\n\t\tBuildingAccessInd as string,\n\t\tCompanyCode as string,\n\t\tCompanyEffDate as timestamp,\n\t\tCostCenterCode as string,\n\t\tCSConsecutiveAssignmentDaysQty as integer,\n\t\tCSDaysAvailableQty as integer,\n\t\tCSDurationWorkDays as integer,\n\t\tCSMaximumEndDate as timestamp,\n\t\tEarliestReturnDateExt as timestamp,\n\t\tJobNumber as integer,\n\t\tJobTitleName as string,\n\t\tMaximumEndDateExt as timestamp,\n\t\tNetworkAccessInd as string,\n\t\tPersonnelNumber as integer,\n\t\tPolicyCalcStartDateExt as timestamp,\n\t\tPositionEntryDate as timestamp,\n\t\tPositionFromDate as timestamp,\n\t\tPositionName as string,\n\t\tPositionNumber as integer,\n\t\tReportsToEmailName as string,\n\t\tReportsToFullName as string,\n\t\tReportsToPersonnelNbr as integer,\n\t\tStaffingResourceTypeGroupCode as string,\n\t\tStandardTitle as string,\n\t\tStandardTitleNumber as integer,\n\t\tTimeAvailableExt as integer,\n\t\tTimeUsedExt as integer,\n\t\tMonthsAtStandardTitle as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tformat: 'parquet') ~> HC01PersonPosition\nHC01PersonPosition select(mapColumn(\n\t\tBuildingAccessInd,\n\t\tCompanyCode,\n\t\tCompanyEffDate,\n\t\tCostCenterCode,\n\t\tCSConsecutiveAssignmentDaysQty,\n\t\tCSDaysAvailableQty,\n\t\tCSDurationWorkDays,\n\t\tCSMaximumEndDate,\n\t\tEarliestReturnDateExt,\n\t\tJobNumber,\n\t\tJobTitleName,\n\t\tMaximumEndDateExt,\n\t\tNetworkAccessInd,\n\t\tPersonnelNumber,\n\t\tPolicyCalcStartDateExt,\n\t\tPositionEntryDate,\n\t\tPositionFromDate,\n\t\tPositionName,\n\t\tPositionNumber,\n\t\tReportsToEmailName,\n\t\tReportsToFullName,\n\t\tReportsToPersonnelNbr,\n\t\tStaffingResourceTypeGroupCode,\n\t\tStandardTitle,\n\t\tStandardTitleNumber,\n\t\tTimeAvailableExt,\n\t\tTimeUsedExt,\n\t\tMonthsAtStandardTitle\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> HC01PersonPositionProjection"
 		}
 	}
 }
